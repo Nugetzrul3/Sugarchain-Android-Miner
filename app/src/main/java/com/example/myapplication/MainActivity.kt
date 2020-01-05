@@ -2,9 +2,11 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import org.json.JSONObject
 import java.io.*
 
@@ -24,6 +26,17 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+    private var doublebackpressedonce = false
+
+    override fun onBackPressed() {
+        if (doublebackpressedonce) {
+            super.onBackPressed()
+            return
+        }
+        this.doublebackpressedonce = true
+        Toast.makeText(this, "Click back again to Exit", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed(Runnable { doublebackpressedonce = false }, 1000)
     }
 
     private fun changeButtonText() {
@@ -123,6 +136,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
 
 

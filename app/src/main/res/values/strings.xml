@@ -8,4 +8,5 @@
     <string name="textView4">Password:</string>
     <string name="hint3"><i>Optional</i></string>
     <string name="textView5">Threads:</string>
+    <string name="hint4"><i>Core count of phone</i></string>
 </resources>
