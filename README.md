@@ -4,5 +4,5 @@ This app is still in WIP. The GUI and buttons are functional, however the miner 
 
 TODO:
 - [x] Force app to have vertical orientation
-- [ ] Fix scaling issues with other devices
+- [x] Fix scaling issues with other devices
 - [ ] Suggestion: Adding a double back button
