@@ -6,3 +6,4 @@ TODO:
 - [x] Force app to have vertical orientation
 - [x] Fix scaling issues with other devices
 - [x] Suggestion: Adding a double back button
+- [ ] Fix Logo positioning on smaller and larger devices
