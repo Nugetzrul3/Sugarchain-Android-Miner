@@ -74,7 +74,7 @@
         android:layout_height="48dp"
         android:background="@drawable/roundshapebutton"
         android:fadingEdge="horizontal"
-        android:text="Save Config"
+        android:text="Clear Log"
         android:textColor="@color/colorText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

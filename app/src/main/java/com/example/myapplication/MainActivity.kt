@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         changeButtonText()
-        saveConfig()
         setText()
+        clearLog()
 
 
 
@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         this.doublebackpressedonce = true
         Toast.makeText(this, "Click back again to Exit", Toast.LENGTH_SHORT).show()
         Handler().postDelayed(Runnable { doublebackpressedonce = false }, 1000)
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(!hasFocus)
+        saveConfig()
     }
 
     private fun changeButtonText() {
@@ -70,31 +75,26 @@ class MainActivity : AppCompatActivity() {
         var thrdstxt = findViewById(R.id.editText5) as EditText
 
 
-        val save_button: Button = findViewById(R.id.button3)
-        save_button.setOnClickListener {
-            val changeTextView2: TextView = findViewById(R.id.textView6)
 
-            var Settings = JSONObject()
-            Settings.put("URL", Pooltxt.text)
-            Settings.put("User", Usertxt.text)
-            Settings.put("Passwd", Passwdtxt.text)
-            Settings.put("CPU", thrdstxt.text)
-
-            changeTextView2.setText("Pool:" + Settings.get("URL").toString() + ", Username:" + Settings.get("User").toString() + ", Password: " + Settings.get("Passwd").toString() + ", Threads: " + Settings.get("CPU").toString())
+        var Settings = JSONObject()
+        Settings.put("URL", Pooltxt.text)
+        Settings.put("User", Usertxt.text)
+        Settings.put("Passwd", Passwdtxt.text)
+        Settings.put("CPU", thrdstxt.text)
 
 
 
-            var context = applicationContext.filesDir.path
-            var file = File(context + "config.json")
-            if(!file.exists()){
-                file.createNewFile()
-                file.writeText(Settings.toString())
-            }
-            else if(file.exists()){
-                file.writeText(Settings.toString())
-            }
 
+        var context = applicationContext.filesDir.path
+        var file = File(context + "config.json")
+        if(!file.exists()){
+            file.createNewFile()
+            file.writeText(Settings.toString())
         }
+        else if(file.exists()){
+            file.writeText(Settings.toString())
+        }
+
     }
 
     fun setText() {
@@ -135,6 +135,15 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun clearLog() {
+        val logclear: TextView = findViewById(R.id.textView6)
+        val clear_button: Button = findViewById(R.id.button3)
+
+        clear_button.setOnClickListener{
+            logclear.setText("")
+        }
     }
 
 }
