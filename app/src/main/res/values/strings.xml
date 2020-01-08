@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Sugarchain Android Miner</string>
-    <string name="textView1">Welcome to the Sugarchain Android Miner.\nTo start mining, enter a pool url, followed \nby your Sugarchain address, an optional \npassword and the number of threads. \nThen click start.</string>
+    <string name="textView1">Welcome to the Sugarchain Android Miner.To start mining, enter a pool url, followed by your Sugarchain address, an optional password and the number of threads. Then click start.</string>
     <string name="textView2">Pool URL:</string>
     <string name="textView3">Username:</string>
     <string name="hint1"><i>e.g loudmining.com:3100</i></string>
@@ -9,4 +9,8 @@
     <string name="hint3"><i>Optional</i></string>
     <string name="textView5">Threads:</string>
     <string name="hint4"><i>Core count of phone</i></string>
+    <string name="sugarGithub">\u00A0\u00A0<a href="https://github.com/sugarchain-project">Github</a>\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<a href="https://sugarchain.org">Website</a>\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<a href="https://1explorer.sugarchain.org/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7">Donate to me!</a>\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<a href="https://github.com/Nugetzrul3">More Projects</a></string>
+    <string name="website"><a href="https://sugarchain.org">Website</a></string>
+    <string name="devdonate"><a href="https://1explorer.sugarchain.org/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7">Donate to me!</a></string>
+    <string name="myGithub"><a href="https://github.com/Nugetzrul3">More Projects</a></string>
 </resources>

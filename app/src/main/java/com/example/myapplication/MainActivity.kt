@@ -3,10 +3,9 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.text.method.LinkMovementMethod
+import android.widget.*
+import androidx.appcompat.app.ActionBar
 import org.json.JSONObject
 import java.io.*
 
@@ -16,6 +15,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val mainline: TextView = findViewById(R.id.textView7)
+
+        mainline.setMovementMethod(LinkMovementMethod.getInstance())
 
         changeButtonText()
         setText()
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
         this.doublebackpressedonce = true
         Toast.makeText(this, "Click back again to Exit", Toast.LENGTH_SHORT).show()
-        Handler().postDelayed(Runnable { doublebackpressedonce = false }, 1000)
+        Handler().postDelayed(Runnable { doublebackpressedonce = false }, 1500)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -145,6 +148,7 @@ class MainActivity : AppCompatActivity() {
             logclear.setText("")
         }
     }
+
 
 }
 
