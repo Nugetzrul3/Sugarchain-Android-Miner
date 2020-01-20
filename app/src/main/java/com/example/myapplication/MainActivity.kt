@@ -1,13 +1,21 @@
 package com.example.myapplication
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Browser
 import android.text.method.LinkMovementMethod
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.*
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
 import org.json.JSONObject
 import java.io.*
+import java.net.URI
+import java.util.zip.Inflater
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,9 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mainline: TextView = findViewById(R.id.textView7)
-
-        mainline.setMovementMethod(LinkMovementMethod.getInstance())
+        val sugartoolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(sugartoolbar)
 
         changeButtonText()
         setText()
@@ -30,6 +37,40 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.getItemId()) {
+            R.id.mygithub -> {
+                var parse1 = Uri.parse("https://github.com/Nugetzrul3")
+                startActivity(Intent(Intent.ACTION_VIEW, parse1))
+                return true
+                }
+            R.id.website -> {
+                var parse2 = Uri.parse("https://sugarchain.org")
+                startActivity(Intent(Intent.ACTION_VIEW, parse2))
+                return true
+            }
+            R.id.Sugargithub -> {
+                var parse3 = Uri.parse("https://github.com/sugarchain-project")
+                startActivity(Intent(Intent.ACTION_VIEW, parse3))
+                return true
+            }
+            R.id.Donate -> {
+                var parse4 = Uri.parse("https://sugarchain-blockbook.ilmango.work/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7")
+                startActivity(Intent(Intent.ACTION_VIEW, parse4))
+            }
+            }
+
+
+        return false
+    }
+
     private var doublebackpressedonce = false
 
     override fun onBackPressed() {

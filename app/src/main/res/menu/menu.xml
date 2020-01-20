@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu"
+        android:icon="@drawable/ic_launcher"
+        app:showAsAction="always"
+        android:title="">
+        <menu>
+
+            <item android:id="@+id/website"
+                android:title="Website"/>
+            <item android:id="@+id/Sugargithub"
+                android:title="Github"/>
+            <item android:id="@+id/Donate"
+                android:title="Donate to me"/>
+            <item android:id="@+id/mygithub"
+                android:title="More projects" />
+        </menu>
+    </item>
+
+</menu>
