@@ -1,21 +1,19 @@
-package com.example.myapplication
+package com.nugetzrul3.sugarchainandroidminer
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.provider.Browser
-import android.text.method.LinkMovementMethod
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import org.json.JSONObject
 import java.io.*
-import java.net.URI
-import java.util.zip.Inflater
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,6 +63,9 @@ class MainActivity : AppCompatActivity() {
                 var parse4 = Uri.parse("https://sugarchain-blockbook.ilmango.work/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7")
                 startActivity(Intent(Intent.ACTION_VIEW, parse4))
             }
+            R.id.settings -> {
+
+            }
             }
 
 
@@ -97,7 +98,9 @@ class MainActivity : AppCompatActivity() {
             fun stoporstart() {
             if (start_button.text == "Start") {
                 start_button.setText("Stop")
-                changeTextView.setText("The Process has started")
+                repeat(10) {
+                    changeTextView.setText("The Process has started")
+                }
             }
             else if (start_button.text == "Stop") {
                 start_button.setText("Start")
@@ -189,6 +192,14 @@ class MainActivity : AppCompatActivity() {
             logclear.setText("")
         }
     }
+
+
+    /*fun DarkModeActivate(view: View) {
+        val switch: Switch = findViewById(R.id.switch1)
+
+    }
+    To be added later
+     */
 
 
 }

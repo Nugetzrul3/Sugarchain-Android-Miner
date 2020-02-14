@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.nugetzrul3.sugarchainandroidminer
 
 import org.junit.Test
 
