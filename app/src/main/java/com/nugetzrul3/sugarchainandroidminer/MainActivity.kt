@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.text.Layout
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -19,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.DarkTheme)
+        }
+        else setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -64,7 +69,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(Intent.ACTION_VIEW, parse4))
             }
             R.id.settings -> {
-
+                val intent = Intent(this, SettingsPage::class.java)
+                startActivity(intent)
             }
             }
 
@@ -192,14 +198,6 @@ class MainActivity : AppCompatActivity() {
             logclear.setText("")
         }
     }
-
-
-    /*fun DarkModeActivate(view: View) {
-        val switch: Switch = findViewById(R.id.switch1)
-
-    }
-    To be added later
-     */
 
 
 }

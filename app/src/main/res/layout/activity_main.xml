@@ -1,99 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="?attr/backgroundcolor"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="316dp"
-        android:background="@drawable/roundshapebutton"
-        android:fadingEdge="horizontal"
-        android:text="Start"
-        android:textColor="@color/colorText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"
-        app:layout_constraintVertical_bias="0.092" />
 
-    <EditText
-        android:id="@+id/editText3"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/hint3"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.02" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/roundshapebutton"
-        android:fadingEdge="horizontal"
-        android:text="Clear Log"
-        android:textColor="@color/colorText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/hint2"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.019" />
+        android:background="?attr/toolbarcolor"
+        app:title="Sugarchain Android Miner"
+        app:titleTextColor="?attr/textcolor" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
+        android:paddingLeft="12px"
+        android:paddingTop="24px"
+        android:paddingRight="12px"
         android:text="@string/textView1"
-        android:textColor="@color/colorText"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textColor="?attr/textcolor"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/editText"
+        android:textColor="?attr/textcolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColorHint="?attr/textcolor"
         android:hint="@string/hint1"
         android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:textColor="?attr/textcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColorHint="?attr/textcolor"
+        android:hint="@string/hint2"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:textColor="?attr/textcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColorHint="?attr/textcolor"
+        android:hint="@string/hint3"
+        android:inputType="textPersonName"
+        android:textSize="14sp" />
+
 
     <EditText
         android:id="@+id/editText5"
@@ -102,49 +72,35 @@
         android:ems="10"
         android:hint="@string/hint4"
         android:inputType="number"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        app:layout_constraintVertical_bias="0.019" />
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/roundshapebutton"
+        android:fadingEdge="horizontal"
+        android:text="Start"
+        android:textColor="?attr/textcolor" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundshapebutton"
+        android:fadingEdge="horizontal"
+        android:text="Clear Log"
+        android:textColor="?attr/textcolor" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
+        android:layout_height="match_parent"
         android:text="Miner Log start"
-        android:textAlignment="gravity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textColor="?attr/textcolor" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="Sugarchain Android Miner"
-        app:titleTextColor="@color/colorText"
-        android:background="@color/colorPrimary" />
 
-    <!--<Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
-        android:layout_marginTop="80dp"
-        android:text="Dark Mode"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"/>
-        *To be added later*
-        -->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

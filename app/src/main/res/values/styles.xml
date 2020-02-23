@@ -3,9 +3,33 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <!--Light Mode-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundcolor">@color/colorBackground</item>
+        <item name="textcolor">@color/colorText</item>
+        <item name="buttoncolor">@color/colorPrimaryDark</item>
+        <item name="toolbarcolor">@color/colorPrimary</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+    </style>
+
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--Dark Mode-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#ffffff</item>
+        <item name="backgroundcolor">#333333</item>
+        <item name="textcolor">#FDFDFD</item>
+        <item name="buttoncolor">#161616</item>
+        <item name="toolbarcolor">#161616</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+    </style>
+
+    <style name="WindowAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
 </resources>
