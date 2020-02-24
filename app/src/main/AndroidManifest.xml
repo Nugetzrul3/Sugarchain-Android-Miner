@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.nugetzrul3.sugarchainandroidminer.SettingsPage"></activity>
+        <activity android:name="com.nugetzrul3.sugarchainandroidminer.SettingsPage"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name="com.nugetzrul3.sugarchainandroidminer.MainActivity"
             android:configChanges="orientation"

@@ -19,7 +19,7 @@ import org.json.JSONObject
 import java.io.*
 
 class MainActivity : AppCompatActivity() {
-    protected lateinit var sharedpref: SharedPref
+    lateinit var sharedpref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedpref = SharedPref(this)

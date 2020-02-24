@@ -9,7 +9,7 @@
         <menu>
 
             <item android:id="@+id/website"
-                android:title="Website"/>
+                android:title="Website" />
             <item android:id="@+id/Sugargithub"
                 android:title="Github"/>
             <item android:id="@+id/Donate"

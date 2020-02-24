@@ -9,4 +9,5 @@
     <string name="website"><a href="https://sugarchain.org">Website</a></string>
     <string name="devdonate"><a href="https://1explorer.sugarchain.org/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7">Donate to me!</a></string>
     <string name="myGithub"><a href="https://github.com/Nugetzrul3">More Projects</a></string>
+    <string name="test"></string>
 </resources>
