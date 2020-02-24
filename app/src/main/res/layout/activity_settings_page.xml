@@ -9,11 +9,5 @@
     android:background="?attr/backgroundcolor"
     tools:context=".MainActivity">
 
-    <Switch
-        android:id="@+id/drkmodeswitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dark Mode" />
-
 
 </LinearLayout>

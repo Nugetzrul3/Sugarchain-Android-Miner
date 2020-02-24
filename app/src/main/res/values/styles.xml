@@ -11,23 +11,23 @@
         <item name="textcolor">@color/colorText</item>
         <item name="buttoncolor">@color/colorPrimaryDark</item>
         <item name="toolbarcolor">@color/colorPrimary</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--Dark Mode-->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">#161616</item>
         <item name="colorAccent">#ffffff</item>
         <item name="backgroundcolor">#333333</item>
         <item name="textcolor">#FDFDFD</item>
         <item name="buttoncolor">#161616</item>
         <item name="toolbarcolor">#161616</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
-    <style name="WindowAnimation">
+    <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>

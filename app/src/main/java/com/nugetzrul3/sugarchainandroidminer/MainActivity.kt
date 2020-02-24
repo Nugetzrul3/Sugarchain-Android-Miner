@@ -1,6 +1,8 @@
 package com.nugetzrul3.sugarchainandroidminer
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,15 +19,34 @@ import org.json.JSONObject
 import java.io.*
 
 class MainActivity : AppCompatActivity() {
-
+    protected lateinit var sharedpref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        sharedpref = SharedPref(this)
+        if (sharedpref.loadNightModestate() == true) {
             setTheme(R.style.DarkTheme)
         }
         else setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val switch: Switch = findViewById(R.id.darkmode)
+        if (sharedpref.loadNightModestate() == true) {
+            switch.setChecked(true)
+        }
+        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                sharedpref.setNightModeState(true)
+                saveConfig()
+                restartapp()
+                setText()
+            }
+            else if (!isChecked) {
+                sharedpref.setNightModeState(false)
+                saveConfig()
+                restartapp()
+                setText()
+            }
+        }
 
         val sugartoolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(sugartoolbar)
@@ -119,7 +140,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     fun saveConfig() {
 
         var Pooltxt = findViewById(R.id.editText) as EditText
@@ -197,6 +217,11 @@ class MainActivity : AppCompatActivity() {
         clear_button.setOnClickListener{
             logclear.setText("")
         }
+    }
+
+    fun restartapp() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
 

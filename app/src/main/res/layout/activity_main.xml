@@ -95,6 +95,13 @@
         android:text="Clear Log"
         android:textColor="?attr/textcolor" />
 
+    <Switch
+        android:id="@+id/darkmode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dark Mode"
+        android:textColor="?attr/textcolor"/>
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
