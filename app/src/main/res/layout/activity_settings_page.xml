@@ -18,12 +18,4 @@
         app:titleTextColor="?attr/textcolor"
         android:theme="@style/ToolBarTheme"/>
 
-    <Switch
-        android:id="@+id/darkmode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dark Mode"
-        android:textColor="?attr/textcolor"/>
-
-
 </LinearLayout>
