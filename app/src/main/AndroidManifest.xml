@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.nugetzrul3.sugarchainandroidminer.SettingsPage"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".MiningStats"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
         <activity
-            android:name="com.nugetzrul3.sugarchainandroidminer.MainActivity"
+            android:name=".SettingsPage"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -22,5 +27,6 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

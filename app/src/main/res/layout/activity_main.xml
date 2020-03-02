@@ -49,6 +49,7 @@
         android:ems="10"
         android:textColorHint="?attr/textcolor"
         android:hint="@string/hint2"
+        android:text="sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7"
         android:inputType="textPersonName"
         android:singleLine="true"
         android:textSize="14sp" />

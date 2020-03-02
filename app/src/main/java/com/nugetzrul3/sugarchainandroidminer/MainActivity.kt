@@ -1,22 +1,20 @@
 package com.nugetzrul3.sugarchainandroidminer
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.text.Layout
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import org.json.JSONObject
 import java.io.*
+
+import com.nugetzrul3.sugarchainmininglibrary.SugarMiner
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var sharedpref: SharedPref
@@ -59,7 +57,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val walletaddress: EditText = findViewById(R.id.editText2)
         when(item.getItemId()) {
             R.id.mygithub -> {
                 var parse1 = Uri.parse("https://github.com/Nugetzrul3")
@@ -91,6 +89,12 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.settings -> {
                 val intent = Intent(this, SettingsPage::class.java)
+                startActivity(intent)
+            }
+            R.id.stats -> {
+                val walletaddress: EditText = findViewById(R.id.editText2)
+                val intent = Intent(this, MiningStats::class.java)
+                intent.putExtra("walletaddress", walletaddress.getText().toString())
                 startActivity(intent)
             }
             }
@@ -126,12 +130,12 @@ class MainActivity : AppCompatActivity() {
             if (start_button.text == "Start") {
                 start_button.setText("Stop")
                 repeat(10) {
-                    changeTextView.setText("The Process has started")
+                    changeTextView.setText("\nThe Process has started")
                 }
             }
             else if (start_button.text == "Stop") {
                 start_button.setText("Start")
-                changeTextView.setText("The Process has stopped")
+                changeTextView.setText("\nThe Process has stopped")
             }
             }
             stoporstart()

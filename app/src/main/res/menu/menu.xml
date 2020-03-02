@@ -7,7 +7,6 @@
         app:showAsAction="always"
         android:title="">
         <menu>
-
             <item android:id="@+id/website"
                 android:title="Website" />
             <item android:id="@+id/Sugargithub"
@@ -18,6 +17,8 @@
                 android:title="More projects" />
             <item android:id="@+id/settings"
                 android:title="Settings" />
+            <item android:id="@+id/stats"
+                android:title="Stats" />
         </menu>
     </item>
 
