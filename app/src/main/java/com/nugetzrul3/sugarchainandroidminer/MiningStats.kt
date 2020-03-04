@@ -33,8 +33,22 @@ class MiningStats : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        getmininginfo()
+        checkTextLength()
 
+    }
+
+    fun checkTextLength() {
+        var walletlength = (getIntent().getStringExtra("walletaddress"))
+
+        if (walletlength.length == 0) {
+            val errorSay: TextView = findViewById(R.id.yourminer)
+            errorSay.setText("No wallet specified")
+        } else if (walletlength.length < 45) {
+            val errorSay: TextView = findViewById(R.id.yourminer)
+            errorSay.setText("Not a valid wallet! Please check your address")
+        } else if (walletlength.length == 45) {
+            getmininginfo()
+        }
     }
 
     fun getmininginfo() {
@@ -47,13 +61,20 @@ class MiningStats : AppCompatActivity() {
                     var info4 = khttp.get("https://1pool.sugarchain.org/api/worker_stats?"+getIntent().getStringExtra("walletaddress")).jsonObject.getString("totalHash")
                     var info5 = khttp.get("https://1pool.sugarchain.org/api/worker_stats?"+getIntent().getStringExtra("walletaddress")).jsonObject.getString("totalShares")
                     this@MiningStats.runOnUiThread(java.lang.Runnable {
-                        val walletaddress: TextView = findViewById(R.id.testprintwalletaddress)
-                        walletaddress.setText(info1.toString() + "\n" + info2.toString() + "\n" + info3.toString() + "\n" + info4.toString() + "\n" + info5.toString())
+                        val walletaddress: TextView = findViewById(R.id.yourminer)
+                        val balance: TextView = findViewById(R.id.yourbalance)
+                        val paid: TextView = findViewById(R.id.yourpaid)
+                        val hashrate: TextView = findViewById(R.id.yourhashrate)
+                        val shares: TextView = findViewById(R.id.yourtotalshares)
+                        walletaddress.setText("Your Address: " + info1.toString())
+                        balance.setText("Your Pool balance: " + info2.toString())
+                        paid.setText("Paid out: " + info3.toString())
+                        hashrate.setText("Your hashrate: " + info4.toString())
+                        shares.setText("Your shares: " + info5.toString())
                     })
                 }).start()
             }
         }, 0, 5000)
-
 
     }
 

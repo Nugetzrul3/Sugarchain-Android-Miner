@@ -11,6 +11,7 @@
         <item name="textcolor">@color/colorText</item>
         <item name="buttoncolor">@color/colorPrimaryDark</item>
         <item name="toolbarcolor">@color/colorPrimary</item>
+        <item name="cardbkgcolor">#FFFFFF</item>
         <item name="android:itemTextAppearance">@style/lightmenutextcolor</item>
         <item name="android:itemBackground">#FFFFFF</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
@@ -26,6 +27,7 @@
         <item name="textcolor">#FDFDFD</item>
         <item name="buttoncolor">#161616</item>
         <item name="toolbarcolor">#161616</item>
+        <item name="cardbkgcolor">@color/cardview_dark_background</item>
         <item name="android:itemTextAppearance">@style/darkmenutextcolor</item>
         <item name="android:itemBackground">#000000</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>

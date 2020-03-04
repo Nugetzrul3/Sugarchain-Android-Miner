@@ -32,13 +32,13 @@
 
     <EditText
         android:id="@+id/editText"
-        android:textColor="?attr/textcolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:textColorHint="?attr/textcolor"
         android:hint="@string/hint1"
         android:inputType="textPersonName"
+        android:textColor="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         android:textSize="14sp" />
 
     <EditText

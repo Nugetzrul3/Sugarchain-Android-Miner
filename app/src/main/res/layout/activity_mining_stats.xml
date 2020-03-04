@@ -17,10 +17,114 @@
         app:title="Your Stats"
         app:titleTextColor="?attr/textcolor"
         android:theme="@style/ToolBarTheme"/>
-    <TextView
-        android:id="@+id/testprintwalletaddress"
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="?attr/cardbkgcolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test" />
+        android:padding="10px"
+        android:clipToPadding="true">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:textColor="?attr/textcolor"
+                android:id="@+id/yourminer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="?attr/cardbkgcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:textColor="?attr/textcolor"
+                android:layout_marginTop="6dp"
+                android:id="@+id/yourbalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="?attr/cardbkgcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:textColor="?attr/textcolor"
+                android:layout_marginTop="6dp"
+                android:id="@+id/yourpaid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="?attr/cardbkgcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:textColor="?attr/textcolor"
+                android:layout_marginTop="6dp"
+                android:id="@+id/yourhashrate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="?attr/cardbkgcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:textColor="?attr/textcolor"
+                android:layout_marginTop="6dp"
+                android:id="@+id/yourtotalshares"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

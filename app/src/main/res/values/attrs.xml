@@ -6,6 +6,7 @@
         <attr name="textcolor" format="color" />
         <attr name="toolbarcolor" format="color" />
         <attr name="accentcolor" format="color" />
+        <attr name="cardbkgcolor" format="color" />
 
     </declare-styleable>
 </resources>
