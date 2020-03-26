@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Switch
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatDelegate
 
@@ -24,7 +25,14 @@ class SettingsPage : AppCompatActivity() {
         setSupportActionBar(settingstoolbar)
 
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+
+        getvernumber()
     }
 
+    fun getvernumber() {
+        val version: String = getPackageManager().getPackageInfo(getPackageName(), 0).versionName
+        val versionTextView: TextView = findViewById(R.id.version_number)
+        versionTextView.setText("Sugarchain Android Miner \n" + version)
+    }
 
 }

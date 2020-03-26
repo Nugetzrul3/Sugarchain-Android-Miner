@@ -43,7 +43,7 @@ class MiningStats : AppCompatActivity() {
         if (walletlength.length == 0) {
             val errorSay: TextView = findViewById(R.id.yourminer)
             errorSay.setText("No wallet specified")
-        } else if (walletlength.length < 45) {
+        } else if (walletlength.length < 45 || walletlength.length > 45) {
             val errorSay: TextView = findViewById(R.id.yourminer)
             errorSay.setText("Not a valid wallet! Please check your address")
         } else if (walletlength.length == 45) {
@@ -71,7 +71,8 @@ class MiningStats : AppCompatActivity() {
                         paid.setText("Paid out: " + info3.toString())
                         hashrate.setText("Your hashrate: " + info4.toString())
                         shares.setText("Your shares: " + info5.toString())
-                    })
+                    }
+                    )
                 }).start()
             }
         }, 0, 5000)

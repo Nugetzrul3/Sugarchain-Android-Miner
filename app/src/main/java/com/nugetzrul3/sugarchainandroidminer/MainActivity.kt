@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -12,8 +13,9 @@ import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import org.json.JSONObject
 import java.io.*
-
-import com.nugetzrul3.sugarchainmininglibrary.SugarMiner
+import java.lang.Exception
+import java.nio.file.Files
+import java.util.regex.Pattern
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,16 +48,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //val buttonstate: Button = findViewById(R.id.button)
+
+        /*if(sharedpref.loadButtonModestate() == true) {
+            buttonstate.setText("Start")
+        }
+        else if (sharedpref.loadButtonModestate() == false) {
+            buttonstate.setText("Stop")
+        }*/
+
         val sugartoolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(sugartoolbar)
+
+        val arrayspinner = arrayOf<String>("--ALGORITHM--", "yespower", "yespowersugar", "yespoweriso", "yespowernull", "yespowerlitb", "yespoweriots", "yespoweritc", "yespowermbc")
+        val spinner: Spinner = findViewById(R.id.spinner)
+        val adapter = ArrayAdapter<String>(this, R.layout.spinner_item, arrayspinner)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.setAdapter(adapter)
 
         changeButtonText()
         setText()
         clearLog()
-
-
-
-
 
     }
 
@@ -66,7 +79,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val walletaddress: EditText = findViewById(R.id.editText2)
         when(item.getItemId()) {
             R.id.mygithub -> {
                 var parse1 = Uri.parse("https://github.com/Nugetzrul3")
@@ -122,20 +134,30 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeButtonText() {
         val start_button: Button = findViewById(R.id.button)
-        start_button.setText("Start")
+        if(sharedpref.loadButtonModestate() == true) {
+            start_button.setText("Start")
+        }
+        else if (sharedpref.loadButtonModestate() == false) {
+            start_button.setText("Stop")
+}
         start_button.setOnClickListener {
             val changeTextView: TextView = findViewById(R.id.textView6)
+            val spinner: Spinner = findViewById(R.id.spinner)
 
             fun stoporstart() {
             if (start_button.text == "Start") {
                 start_button.setText("Stop")
-                repeat(10) {
-                    changeTextView.setText("\nThe Process has started")
-                }
+                /*repeat(100) {
+                    changeTextView.append("\nThe process has started")
+                }*/
+                var spinnerItem = spinner.selectedItem.toString()
+                changeTextView.setText(spinnerItem)
+                sharedpref.setButtonModeState(false)
             }
             else if (start_button.text == "Stop") {
                 start_button.setText("Start")
                 changeTextView.setText("\nThe Process has stopped")
+                sharedpref.setButtonModeState(true)
             }
             }
             stoporstart()
@@ -150,6 +172,8 @@ class MainActivity : AppCompatActivity() {
         var Usertxt = findViewById(R.id.editText2) as EditText
         var Passwdtxt = findViewById(R.id.editText3) as EditText
         var thrdstxt = findViewById(R.id.editText5) as EditText
+        var algorithm = findViewById(R.id.spinner) as Spinner
+        var algorithmtext = algorithm.selectedItemPosition
 
 
 
@@ -158,6 +182,7 @@ class MainActivity : AppCompatActivity() {
         Settings.put("User", Usertxt.text)
         Settings.put("Passwd", Passwdtxt.text)
         Settings.put("CPU", thrdstxt.text)
+        Settings.put("Algorithm", algorithmtext)
 
 
 
@@ -181,6 +206,7 @@ class MainActivity : AppCompatActivity() {
         val userrset: EditText = findViewById(R.id.editText2)
         val passwdset: EditText = findViewById(R.id.editText3)
         val thrdsset: EditText = findViewById(R.id.editText5)
+        val spinnerset: Spinner = findViewById(R.id.spinner)
 
         try {
 
@@ -199,12 +225,13 @@ class MainActivity : AppCompatActivity() {
                 var username = jsobobj.get("User")
                 var password = jsobobj.get("Passwd")
                 var threads = jsobobj.get("CPU")
+                var algo = jsobobj.get("Algorithm").toString()
 
                 serverset.setText(server.toString())
                 userrset.setText(username.toString())
                 passwdset.setText(password.toString())
                 thrdsset.setText(threads.toString())
-
+                spinnerset.setSelection(algo.toInt())
 
             }
         } catch (e: IOException) {

@@ -11,8 +11,8 @@ android {
         applicationId "com.nugetzrul3.sugarchainandroidminer"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 190
+        versionName '1.9.0'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

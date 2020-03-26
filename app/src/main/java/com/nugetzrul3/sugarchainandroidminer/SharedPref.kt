@@ -19,4 +19,14 @@ class SharedPref(context: Context) {
     fun loadNightModestate(): Boolean? {
         return mysharedPref.getBoolean("NightMode", false)
     }
+
+    fun setButtonModeState(state: Boolean?) {
+        val editor = mysharedPref.edit()
+        editor.putBoolean("STARTTRUE", state!!)
+        editor.apply()
+    }
+
+    fun loadButtonModestate(): Boolean? {
+        return mysharedPref.getBoolean("STARTTRUE", true)
+    }
 }

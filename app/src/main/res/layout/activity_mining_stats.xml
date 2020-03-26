@@ -22,8 +22,7 @@
         app:cardBackgroundColor="?attr/cardbkgcolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10px"
-        android:clipToPadding="true">
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,8 +43,8 @@
         android:layout_marginTop="10dp"
         app:cardBackgroundColor="?attr/cardbkgcolor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +65,8 @@
         android:layout_marginTop="10dp"
         app:cardBackgroundColor="?attr/cardbkgcolor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,7 +88,8 @@
         android:layout_marginTop="10dp"
         app:cardBackgroundColor="?attr/cardbkgcolor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,7 +111,8 @@
         android:layout_marginTop="10dp"
         app:cardBackgroundColor="?attr/cardbkgcolor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
