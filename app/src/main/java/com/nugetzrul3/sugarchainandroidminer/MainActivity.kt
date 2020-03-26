@@ -225,13 +225,13 @@ class MainActivity : AppCompatActivity() {
                 var username = jsobobj.get("User")
                 var password = jsobobj.get("Passwd")
                 var threads = jsobobj.get("CPU")
-                var algo = jsobobj.get("Algorithm").toString()
+                //var algo = jsobobj.get("Algorithm").toString()
 
                 serverset.setText(server.toString())
                 userrset.setText(username.toString())
                 passwdset.setText(password.toString())
                 thrdsset.setText(threads.toString())
-                spinnerset.setSelection(algo.toInt())
+                //spinnerset.setSelection(algo.toInt())
 
             }
         } catch (e: IOException) {
