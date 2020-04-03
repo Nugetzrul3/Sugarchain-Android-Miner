@@ -5,6 +5,12 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
+if (${ANDROID_ABI} STREQUAL "x86")
+    set(CMAKE_SHARED_LINKER_FLAGS "-Wall -v -Wl,--no-warn-shared-textrel")
+endif()
+
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/main/cpp/libcpuminer)
+
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -19,7 +25,7 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-            src/main/cpp/HelloWorld.cpp)
+             src/main/cpp/HelloWorld.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -43,4 +49,5 @@ target_link_libraries( # Specifies the target library.
 
                        # Links the target library to the log library
                        # included in the NDK.
-                       ${log-lib} )
+                       ${log-lib}
+                       cpuminer)

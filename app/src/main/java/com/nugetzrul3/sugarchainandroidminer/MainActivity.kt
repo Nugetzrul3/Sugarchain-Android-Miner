@@ -1,27 +1,53 @@
 package com.nugetzrul3.sugarchainandroidminer
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
+import android.os.Message
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import com.nugetzrul3.sugarchainmininglibrary.SugarMiner
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.io.*
-import java.lang.Exception
-import java.nio.file.Files
-import java.util.regex.Pattern
+import java.lang.NumberFormatException
+import java.lang.ref.WeakReference
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.LinkedBlockingQueue
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var sharedpref: SharedPref
 
+    private var sugarandminer: SugarMiner? = null
+    private val logs: BlockingQueue<String?> = LinkedBlockingQueue(LOG_LINES)
+
+    private class JNIHandler(activity: MainActivity) : Handler() {
+        private val activity: WeakReference<MainActivity>
+        override fun handleMessage(msg: Message) {
+            val activity = activity.get()
+            if (activity != null) {
+                val log = msg.data.getString("log")
+                val logs = Utils.rotateStringQueue(activity.logs, log)
+                activity.textView6.text = logs
+            }
+        }
+
+        init {
+            this.activity = WeakReference(activity)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        var sugarminer = SugarMiner(stringhandler)
+
         sharedpref = SharedPref(this)
         if (sharedpref.loadNightModestate() == true) {
             setTheme(R.style.DarkTheme)
@@ -48,6 +74,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        var testtxt = findViewById<TextView>(R.id.textView6)
+        var algorithm = findViewById(R.id.spinner) as Spinner
+        testtxt.setText(algorithm.selectedItemPosition.toString())
+
         //val buttonstate: Button = findViewById(R.id.button)
 
         /*if(sharedpref.loadButtonModestate() == true) {
@@ -60,11 +90,32 @@ class MainActivity : AppCompatActivity() {
         val sugartoolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(sugartoolbar)
 
-        val arrayspinner = arrayOf<String>("--ALGORITHM--", "yespower", "yespowersugar", "yespoweriso", "yespowernull", "yespowerlitb", "yespoweriots", "yespoweritc", "yespowermbc")
+        val arrayspinner = arrayOf("--ALGORITHM--", "yespower", "yespowersugar", "yespoweriso", "yespowernull", "yespowerlitb", "yespoweriots", "yespoweritc", "yespowermbc")
         val spinner: Spinner = findViewById(R.id.spinner)
         val adapter = ArrayAdapter<String>(this, R.layout.spinner_item, arrayspinner)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.setAdapter(adapter)
+
+        val minerbutton: Button = findViewById(R.id.button)
+        val poolurltxt: EditText = findViewById(R.id.editText)
+        val walletaddr: EditText = findViewById(R.id.editText2)
+        val pwd: EditText = findViewById(R.id.editText3)
+        val threadsedittext: EditText = findViewById(R.id.editText5)
+        val algo = SugarMiner.Algorithm.YESPOWER
+        minerbutton.setOnClickListener {
+            if (minerbutton.text == "Stop") {
+                sugarminer!!.stopMining()
+            }
+            else if (minerbutton.text == "Start") {
+                var threads = 0
+                try {
+                    threads = threadsedittext.text.toString().toInt()
+                    sugarminer!!.beginMiner(poolurltxt.toString(), walletaddr.toString(), pwd.toString(), threads, algo)
+                } catch (e: NumberFormatException) {
+                    e.printStackTrace()
+                }
+            }
+        }
 
         changeButtonText()
         setText()
@@ -172,8 +223,10 @@ class MainActivity : AppCompatActivity() {
         var Usertxt = findViewById(R.id.editText2) as EditText
         var Passwdtxt = findViewById(R.id.editText3) as EditText
         var thrdstxt = findViewById(R.id.editText5) as EditText
+        var testtxt = findViewById<TextView>(R.id.textView6)
         var algorithm = findViewById(R.id.spinner) as Spinner
-        var algorithmtext = algorithm.selectedItemPosition
+
+        testtxt.setText(algorithm.selectedItemPosition.toString())
 
 
 
@@ -182,7 +235,7 @@ class MainActivity : AppCompatActivity() {
         Settings.put("User", Usertxt.text)
         Settings.put("Passwd", Passwdtxt.text)
         Settings.put("CPU", thrdstxt.text)
-        Settings.put("Algorithm", algorithmtext)
+        Settings.put("Algorithm", algorithm.selectedItemPosition.toString())
 
 
 
@@ -225,13 +278,13 @@ class MainActivity : AppCompatActivity() {
                 var username = jsobobj.get("User")
                 var password = jsobobj.get("Passwd")
                 var threads = jsobobj.get("CPU")
-                //var algo = jsobobj.get("Algorithm").toString()
+                var algo = jsobobj.getInt("Algorithm")
 
                 serverset.setText(server.toString())
                 userrset.setText(username.toString())
                 passwdset.setText(password.toString())
                 thrdsset.setText(threads.toString())
-                //spinnerset.setSelection(algo.toInt())
+                spinnerset.setSelection(algo)
 
             }
         } catch (e: IOException) {
@@ -255,6 +308,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    companion object {
+        private const val LOG_LINES = 1000
+        private var stringhandler: JNIHandler? = null
+    }
 
 }
 

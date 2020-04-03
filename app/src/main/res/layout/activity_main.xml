@@ -60,7 +60,6 @@
         android:ems="10"
         android:textColorHint="?attr/textcolor"
         android:hint="@string/hint2"
-        android:text="sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7"
         android:inputType="textPersonName"
         android:singleLine="true"
         android:textSize="14sp" />
@@ -133,7 +132,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Miner Log start"
+            android:text="Log"
             android:textColor="?attr/textcolor" />
     </ScrollView>
 
