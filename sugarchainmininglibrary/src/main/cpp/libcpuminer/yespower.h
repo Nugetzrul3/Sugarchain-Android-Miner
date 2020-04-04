@@ -42,8 +42,8 @@ extern "C" {
  * Use yespower_local_t instead.
  */
 typedef struct {
-	void *base, *aligned;
-	size_t base_size, aligned_size;
+    void *base, *aligned;
+    size_t base_size, aligned_size;
 } yespower_region_t;
 
 /**
@@ -51,26 +51,20 @@ typedef struct {
  */
 typedef yespower_region_t yespower_local_t;
 
-/*
- * Type for yespower algorithm version numbers.
- */
-typedef enum { YESPOWER_0_5 = 5, YESPOWER_1_0 = 10 } yespower_version_t;
-
 /**
  * yespower parameters combined into one struct.
  */
 typedef struct {
-	yespower_version_t version;
-	uint32_t N, r;
-	const uint8_t *pers;
-	size_t perslen;
+    uint32_t N, r;
+    const uint8_t *pers;
+    size_t perslen;
 } yespower_params_t;
 
 /**
  * A 256-bit yespower hash.
  */
 typedef struct {
-	unsigned char uc[32];
+    unsigned char uc[32];
 } yespower_binary_t;
 
 /**

@@ -82,8 +82,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/hint4"
-        android:inputType="number"
         android:textColor="?attr/textcolor"
+        android:inputType="number"
         android:textColorHint="?attr/textcolor"
         android:textSize="14sp" />
 
@@ -132,7 +132,6 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Log"
             android:textColor="?attr/textcolor" />
     </ScrollView>
 

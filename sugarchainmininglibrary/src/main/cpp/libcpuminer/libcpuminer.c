@@ -103,20 +103,16 @@ struct workio_cmd {
 };
 
 enum algos {
-	ALGO_YESCRYPT,
-	ALGO_YESPOWER,
-	ALGO_SCRYPT,		/* scrypt(1024,1,1) */
+	ALGO_POWER2B,
 	ALGO_SHA256D,		/* SHA-256d */
 };
 
 static const char *algo_names[] = {
-	[ALGO_YESCRYPT]		= "yescrypt",
-	[ALGO_YESPOWER]		= "yespower",
-	[ALGO_SCRYPT]		= "scrypt",
+	[ALGO_POWER2B]	= "power2b",
 	[ALGO_SHA256D]		= "sha256d",
 };
 
-bool opt_debug = false;
+bool opt_debug = true;
 bool opt_protocol = false;
 static bool opt_benchmark = false;
 bool opt_redirect = true;
@@ -132,7 +128,7 @@ static int opt_retries = -1;
 static int opt_fail_pause = 30;
 int opt_timeout = 0;
 static int opt_scantime = 5;
-static enum algos opt_algo = ALGO_YESCRYPT;
+static enum algos opt_algo = ALGO_POWER2B;
 static int opt_scrypt_n = 1024;
 static int opt_n_threads;
 static int num_processors;
@@ -1005,7 +1001,7 @@ static void stratum_gen_work(struct stratum_ctx *sctx, struct work *work)
 		free(xnonce2str);
 	}
 
-	if (opt_algo == ALGO_SCRYPT || opt_algo == ALGO_YESCRYPT || opt_algo == ALGO_YESPOWER)
+	if (opt_algo == ALGO_POWER2B)
 		diff_to_target(work->target, sctx->job.diff / 65536.0);
 	else
 		diff_to_target(work->target, sctx->job.diff);
@@ -1043,15 +1039,6 @@ static void *miner_thread(void *userdata)
 	}
 #endif // __APPLE__
 #endif // __KITKAT__
-	
-	if (opt_algo == ALGO_SCRYPT) {
-		scratchbuf = scrypt_buffer_alloc(opt_scrypt_n);
-		if (!scratchbuf) {
-			applog(LOG_ERR, "scrypt buffer allocation failed");
-			pthread_mutex_lock(&applog_lock);
-			exit(1);
-		}
-	}
 
 	while (mythr->run) {
 		unsigned long hashes_done;
@@ -1104,14 +1091,8 @@ static void *miner_thread(void *userdata)
 		max64 *= thr_hashrates[thr_id];
 		if (max64 <= 0) {
 			switch (opt_algo) {
-			case ALGO_YESCRYPT:
+			case ALGO_POWER2B:
 				max64 = 0x000fff;
-				break;
-			case ALGO_YESPOWER:
-				max64 = 0x000fff;
-				break;
-			case ALGO_SCRYPT:
-				max64 = opt_scrypt_n < 16 ? 0x3ffff : 0x3fffff / opt_scrypt_n;
 				break;
 			case ALGO_SHA256D:
 				max64 = 0x1fffff;
@@ -1128,19 +1109,9 @@ static void *miner_thread(void *userdata)
 
 		/* scan nonces for a proof-of-work hash */
 		switch (opt_algo) {
-		case ALGO_YESCRYPT:
-			rc = scanhash_yescrypt(thr_id, work.data, work.target,
+		case ALGO_POWER2B:
+			rc = scanhash_power2b(thr_id, work.data, work.target,
 					       max_nonce, &hashes_done);
-			break;
-
-		case ALGO_YESPOWER:
-			rc = scanhash_yespower(thr_id, work.data, work.target,
-					       max_nonce, &hashes_done);
-			break;
-
-		case ALGO_SCRYPT:
-			rc = scanhash_scrypt(thr_id, work.data, scratchbuf, work.target,
-			                     max_nonce, &hashes_done, opt_scrypt_n);
 			break;
 
 		case ALGO_SHA256D:

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sugarchain Android Miner</string>
     <string name="textView1">Welcome to the Sugarchain Android Miner.To start mining, enter a pool url, followed by your Sugarchain address, an optional password and the number of threads. Then click start.</string>
-    <string name="hint1">Pool URL: <i>e.g loudmining.com:3100</i></string>
+    <string name="hint1">Pool URL: <i>e.g stratum+tcp://cpu-pool.com:63418</i></string>
     <string name="hint2">Wallet address: <i>sugar1q...</i></string>
     <string name="hint3">Password: <i>Optional</i></string>
     <string name="hint4">Threads: <i>Core count of phone</i></string>
@@ -9,5 +9,4 @@
     <string name="website"><a href="https://sugarchain.org">Website</a></string>
     <string name="devdonate"><a href="https://1explorer.sugarchain.org/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7">Donate to me!</a></string>
     <string name="myGithub"><a href="https://github.com/Nugetzrul3">More Projects</a></string>
-    <string name="test"></string>
 </resources>
