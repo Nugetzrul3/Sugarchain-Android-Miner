@@ -23,17 +23,16 @@ public class SugarMiner {
 
     private static Handler sHandler;
 
-    public SugarMiner() {}
     public SugarMiner(Handler handler) {
         sHandler = handler;
     }
     public int beginMiner(String pool, String username, String pwd, int threads, Algorithms algorithm) {
         switch (algorithm) {
             case YESPOWER:
-                return startMining(pool, username, pwd, threads, 1);
+                return startMining(pool, username, pwd, threads, 0);
             case YESPOWERSUGAR:
-                return startMining(pool, username, pwd, threads, 2);
-            case YESPOWERLITB:
+                return startMining(pool, username, pwd, threads, 1);
+            /*case YESPOWERLITB:
                 return startMining(pool, username, pwd, threads, 3);
             case YESPOWERIOTS:
                 return startMining(pool, username, pwd, threads, 4);
@@ -42,14 +41,13 @@ public class SugarMiner {
             case YESPOWERITC:
                 return startMining(pool, username, pwd, threads, 6);
             case YESPOWERISO:
-                return startMining(pool, username, pwd, threads, 7);
+                return startMining(pool, username, pwd, threads, 7);*/
             default:
                 return -1;
         }
     }
 
     private static void output(String message) {
-        // Generate message
         Message msg = new Message();
         Bundle bundle = new Bundle();
         bundle.putString("log", message);

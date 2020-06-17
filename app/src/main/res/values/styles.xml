@@ -7,9 +7,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundcolor">@color/colorBackground</item>
+        <item name="backgroundcolor">#dcdcdc</item>
         <item name="textcolor">@color/colorText</item>
-        <item name="buttoncolor">@color/colorPrimaryDark</item>
+        <item name="buttoncolor">#606060</item>
         <item name="toolbarcolor">@color/colorPrimary</item>
         <item name="cardbkgcolor">#FFFFFF</item>
         <item name="android:itemTextAppearance">@style/lightmenutextcolor</item>
@@ -20,7 +20,7 @@
     <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--Dark Mode-->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#ffffff</item>
         <item name="colorPrimaryDark">#161616</item>
         <item name="colorAccent">#ffffff</item>
         <item name="backgroundcolor">#333333</item>

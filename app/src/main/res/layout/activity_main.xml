@@ -34,6 +34,7 @@
                 android:paddingLeft="12px"
                 android:paddingTop="24px"
                 android:paddingRight="12px"
+                app:fontFamily="@font/ubuntu_regular"
                 android:text="@string/textView1"
                 android:textColor="?attr/textcolor"
                 android:textSize="15sp" />
@@ -50,6 +51,7 @@
         android:inputType="textPersonName"
         android:textColor="?attr/textcolor"
         android:textColorHint="?attr/textcolor"
+        app:backgroundTint="?attr/textcolor"
         android:textSize="14sp" />
 
     <EditText
@@ -62,6 +64,7 @@
         android:hint="@string/hint2"
         android:inputType="textPersonName"
         android:singleLine="true"
+        app:backgroundTint="?attr/textcolor"
         android:textSize="14sp" />
 
     <EditText
@@ -73,6 +76,7 @@
         android:textColorHint="?attr/textcolor"
         android:hint="@string/hint3"
         android:inputType="textPersonName"
+        app:backgroundTint="?attr/textcolor"
         android:textSize="14sp" />
 
 
@@ -85,12 +89,14 @@
         android:textColor="?attr/textcolor"
         android:inputType="number"
         android:textColorHint="?attr/textcolor"
+        app:backgroundTint="?attr/textcolor"
         android:textSize="14sp" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:backgroundTint="?attr/textcolor"
         />
 
     <Button
@@ -101,15 +107,6 @@
         android:background="@drawable/roundshapebutton"
         android:fadingEdge="horizontal"
         android:text="Start"
-        android:textColor="?attr/textcolor" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundshapebutton"
-        android:fadingEdge="horizontal"
-        android:text="Clear Log"
         android:textColor="?attr/textcolor" />
 
     <LinearLayout
@@ -125,15 +122,12 @@
             android:textColor="?attr/textcolor" />
     </LinearLayout>
 
-    <ScrollView
+    <TextView
+        android:id="@+id/textView6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="?attr/textcolor" />
-    </ScrollView>
-
+        android:gravity="bottom"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textcolor"
+        android:scrollbars="vertical"/>
 
 </LinearLayout>

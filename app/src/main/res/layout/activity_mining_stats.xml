@@ -18,6 +18,15 @@
         app:titleTextColor="?attr/textcolor"
         android:theme="@style/ToolBarTheme"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
         app:cardBackgroundColor="?attr/cardbkgcolor"
         android:layout_width="match_parent"
@@ -33,6 +42,7 @@
             <TextView
                 android:textColor="?attr/textcolor"
                 android:id="@+id/yourminer"
+                app:fontFamily="@font/ubuntu_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -54,7 +64,8 @@
             <TextView
                 android:textColor="?attr/textcolor"
                 android:layout_marginTop="6dp"
-                android:id="@+id/yourbalance"
+                android:id="@+id/yourimmature"
+                app:fontFamily="@font/ubuntu_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -78,6 +89,7 @@
                 android:textColor="?attr/textcolor"
                 android:layout_marginTop="6dp"
                 android:id="@+id/yourpaid"
+                app:fontFamily="@font/ubuntu_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -101,6 +113,7 @@
                 android:textColor="?attr/textcolor"
                 android:layout_marginTop="6dp"
                 android:id="@+id/yourhashrate"
+                app:fontFamily="@font/ubuntu_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -124,9 +137,33 @@
                 android:textColor="?attr/textcolor"
                 android:layout_marginTop="6dp"
                 android:id="@+id/yourtotalshares"
+                app:fontFamily="@font/ubuntu_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <RadioButton
+            android:id="@+id/selectNomp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:text="NOMP" />
+
+        <RadioButton
+            android:id="@+id/selectYIIMP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            android:text="YIIMP" />
+    </LinearLayout>
 </LinearLayout>

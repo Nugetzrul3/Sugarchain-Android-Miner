@@ -1,7 +1,8 @@
 package com.nugetzrul3.sugarchainandroidminer
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,13 +13,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.nugetzrul3.sugarchainmininglibrary.SugarMiner
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
-import org.w3c.dom.Text
 import java.io.*
 import java.lang.NumberFormatException
 import java.lang.ref.WeakReference
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 val log = msg.data.getString("log")
                 val logs = Utils.rotateStringQueue(activity.logs, log)
                 activity.textView6.text = logs
-                Log.d(TAG, log)
+                Log.d(TAG, logs)
             }
         }
 
@@ -49,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         shandler = JNIHandler(this)
@@ -81,15 +81,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //val buttonstate: Button = findViewById(R.id.button)
-
-        /*if(sharedpref.loadButtonModestate() == true) {
-            buttonstate.setText("Start")
-        }
-        else if (sharedpref.loadButtonModestate() == false) {
-            buttonstate.setText("Stop")
-        }*/
-
         val sugartoolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(sugartoolbar)
 
@@ -104,7 +95,6 @@ class MainActivity : AppCompatActivity() {
 
         changeButtonText()
         setText()
-        clearLog()
 
     }
 
@@ -117,23 +107,24 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.getItemId()) {
             R.id.mygithub -> {
-                var parse1 = Uri.parse("https://github.com/Nugetzrul3")
+                val parse1 = Uri.parse("https://github.com/Nugetzrul3")
                 startActivity(Intent(Intent.ACTION_VIEW, parse1))
                 return true
                 }
             R.id.website -> {
-                var parse2 = Uri.parse("https://sugarchain.org")
+                val parse2 = Uri.parse("https://sugarchain.org")
                 startActivity(Intent(Intent.ACTION_VIEW, parse2))
                 return true
             }
             R.id.Sugargithub -> {
-                var parse3 = Uri.parse("https://github.com/sugarchain-project")
+                val parse3 = Uri.parse("https://github.com/sugarchain-project")
                 startActivity(Intent(Intent.ACTION_VIEW, parse3))
                 return true
             }
             R.id.Donate -> {
-                var parse4 = Uri.parse("https://sugarchain-blockbook.ilmango.work/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7")
+                val parse4 = Uri.parse("https://1explorer.sugarchain.org/address/sugar1qtl7u435t4jly2hdaa7hrcv5qkpvwa0spd9zzc7")
                 startActivity(Intent(Intent.ACTION_VIEW, parse4))
+                return true
             }
             R.id.settings -> {
                 val intent = Intent(this, SettingsPage::class.java)
@@ -170,7 +161,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeButtonText() {
         val start_button: Button = findViewById(R.id.button)
-        val test: TextView = findViewById(R.id.textView6)
         if (sharedpref.loadButtonModestate() == true) {
             start_button.setText("Start")
         } else if (sharedpref.loadButtonModestate() == false) {
@@ -185,26 +175,37 @@ class MainActivity : AppCompatActivity() {
                     val walletaddr: EditText = findViewById(R.id.editText2)
                     val pwd: EditText = findViewById(R.id.editText3)
                     val threadsedittext: EditText = findViewById(R.id.editText5)
+                    val log: TextView = findViewById(R.id.textView6)
                     val algo = SugarMiner.Algorithms.YESPOWER
                     var threads = 0
-                    sugarandminer!!.initMining()
-                    try {
-                        threads = threadsedittext.text.toString().toInt()
-                        sugarandminer!!.beginMiner(
-                            poolurltxt.text.toString(),
-                            walletaddr.text.toString(),
-                            pwd.text.toString(),
-                            threads,
-                            algo
-                        )
-                    } catch (e: NumberFormatException) {
-                        e.printStackTrace()
+                    if (poolurltxt.text.toString() == "") {
+                        log.setText("Error, no pool url specified")
+                        sharedpref.miningtrue(false)
+                    } else {
+                        sugarandminer!!.initMining()
+                        try {
+                            threads = threadsedittext.text.toString().toInt()
+                            sugarandminer!!.beginMiner(
+                                poolurltxt.text.toString(),
+                                walletaddr.text.toString(),
+                                pwd.text.toString(),
+                                threads,
+                                algo
+                            )
+                        } catch (e: NumberFormatException) {
+                            e.printStackTrace()
+                        }
+                        sharedpref.setButtonModeState(false)
+                        sharedpref.miningtrue(true)
                     }
-                    sharedpref.setButtonModeState(false)
                 } else if (start_button.text == "Stop") {
                     start_button.setText("Start")
-                    sugarandminer!!.stopMining()
-                    sharedpref.setButtonModeState(true)
+                    if (sharedpref.loadminingstate() == true) {
+                        sugarandminer!!.stopMining()
+                        sharedpref.setButtonModeState(true)
+                    } else {
+                        return
+                    }
                 }
 
             }
@@ -271,13 +272,13 @@ class MainActivity : AppCompatActivity() {
                 var username = jsobobj.get("User")
                 var password = jsobobj.get("Passwd")
                 var threads = jsobobj.get("CPU")
-                //var algo = jsobobj.getInt("Algorithm")
+                var algo = jsobobj.getInt("Algorithm")
 
                 serverset.setText(server.toString())
                 userrset.setText(username.toString())
                 passwdset.setText(password.toString())
                 thrdsset.setText(threads.toString())
-                //spinnerset.setSelection(algo)
+                spinnerset.setSelection(algo)
 
             }
         } catch (e: IOException) {
@@ -287,19 +288,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun clearLog() {
-        val logclear: TextView = findViewById(R.id.textView6)
-        val clear_button: Button = findViewById(R.id.button3)
-
-        clear_button.setOnClickListener{
-            logclear.setText("")
-        }
-    }
-
     fun restartapp() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
+
 
     companion object {
         private const val LOG_LINES = 1000

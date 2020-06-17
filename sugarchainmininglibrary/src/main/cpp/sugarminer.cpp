@@ -80,14 +80,14 @@ Java_com_nugetzrul3_sugarchainmininglibrary_SugarMiner_startMining(
         jstring url,
         jstring user,
         jstring password,
-        jint n_threads) {
+        jint n_threads, jint algo) {
     Log("startMining");
 
     const char *c_url = env->GetStringUTFChars(url, NULL);
     const char *c_user = env->GetStringUTFChars(user, NULL);
     const char *c_password = env->GetStringUTFChars(password, NULL);
 
-    int result = start(c_url, c_user, c_password, n_threads);
+    int result = start(c_url, c_user, c_password, n_threads, algo);
 
     env->ReleaseStringUTFChars(url, c_url);
     env->ReleaseStringUTFChars(user, c_user);

@@ -29,4 +29,14 @@ class SharedPref(context: Context) {
     fun loadButtonModestate(): Boolean? {
         return mysharedPref.getBoolean("STARTTRUE", true)
     }
+
+    fun miningtrue(state: Boolean?) {
+        val editor = mysharedPref.edit()
+        editor.putBoolean("miningtrue", state!!)
+        editor.apply()
+    }
+
+    fun loadminingstate(): Boolean? {
+        return mysharedPref.getBoolean("miningtrue", false)
+    }
 }

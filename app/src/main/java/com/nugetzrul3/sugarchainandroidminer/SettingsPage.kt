@@ -2,12 +2,8 @@ package com.nugetzrul3.sugarchainandroidminer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.CompoundButton
-import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.appcompat.app.AppCompatDelegate
 
 class SettingsPage : AppCompatActivity() {
     protected lateinit var sharedpref: SharedPref
